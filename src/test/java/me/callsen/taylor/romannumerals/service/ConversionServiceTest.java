@@ -14,7 +14,7 @@ import me.callsen.taylor.romannumerals.service.impl.ConversionServiceImpl;
 
 public class ConversionServiceTest {
 
-  private final static int MAX_CONVERSTION_VALUE = 255;
+  private final static int MAX_CONVERSTION_VALUE = 3999;
 
   private BufferedReader reader;
 

@@ -15,6 +15,7 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import me.callsen.taylor.romannumerals.config.Constants;
 import me.callsen.taylor.romannumerals.model.Conversion;
 import me.callsen.taylor.romannumerals.model.ErrorResponse;
 import me.callsen.taylor.romannumerals.service.ConversionService;
@@ -29,8 +30,8 @@ public class ConversionController {
     this.conversionService = conversionService;
   }
 
-  @GetMapping("/romannumeral")
-  public Conversion handleConvertRequest(@RequestParam(value = "query", required = true) @Min(1) @Max(255) int inputValue) {
+  @GetMapping(Constants.ROMAN_NUMERNAL_CONVERSION_ENDPOINT)
+  public Conversion handleConvertRequest(@RequestParam(value = "query", required = true) @Min(Constants.ROMAN_NUMERNAL_CONVERSION_MIN_VALUE) @Max(Constants.ROMAN_NUMERNAL_CONVERSION_MAX_VALUE) int inputValue) {
     return conversionService.convertDecimalToNumeral(inputValue);
   }
 
@@ -43,7 +44,7 @@ public class ConversionController {
   @ExceptionHandler({ ConstraintViolationException.class, MethodArgumentTypeMismatchException.class})
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ErrorResponse handleInvalidRequestParameter() {
-      return new ErrorResponse(400, "query parameter 'query' must be an integer between 1 and 255");
+      return new ErrorResponse(400, String.format("query parameter 'query' must be an integer between %d and %d", Constants.ROMAN_NUMERNAL_CONVERSION_MIN_VALUE, Constants.ROMAN_NUMERNAL_CONVERSION_MAX_VALUE));
   }
 
 }

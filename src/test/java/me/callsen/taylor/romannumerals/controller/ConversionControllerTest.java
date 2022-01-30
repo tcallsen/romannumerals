@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import me.callsen.taylor.romannumerals.config.Constants;
 import me.callsen.taylor.romannumerals.model.Conversion;
 import me.callsen.taylor.romannumerals.service.ConversionService;
 
@@ -35,7 +36,7 @@ public class ConversionControllerTest {
 
   @Test
   public void verifyBasicTest() throws Exception {
-    this.mockMvc.perform(get("/romannumeral?query=4"))
+    this.mockMvc.perform(get(Constants.ROMAN_NUMERNAL_CONVERSION_ENDPOINT + "?query=4"))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.inputValue").value("4"))
             .andExpect(jsonPath("$.outputValue").value("output-value"));
@@ -43,28 +44,28 @@ public class ConversionControllerTest {
 
   @Test
   public void verifyMissingQueryString() throws Exception {
-    this.mockMvc.perform(get("/romannumeral"))
+    this.mockMvc.perform(get(Constants.ROMAN_NUMERNAL_CONVERSION_ENDPOINT))
             .andExpect(status().isBadRequest())
             .andExpect(jsonPath("$.statusCode").value(400));
   }
 
   @Test
   public void verifyInvalidQueryString() throws Exception {
-    this.mockMvc.perform(get("/romannumeral?query=invalud"))
+    this.mockMvc.perform(get(Constants.ROMAN_NUMERNAL_CONVERSION_ENDPOINT + "?query=invalud"))
             .andExpect(status().isBadRequest())
             .andExpect(jsonPath("$.statusCode").value(400));
   }
 
   @Test
   public void verifyInvalidQueryStringLow() throws Exception {
-    this.mockMvc.perform(get("/romannumeral?query=0"))
+    this.mockMvc.perform(get(Constants.ROMAN_NUMERNAL_CONVERSION_ENDPOINT + "?query=0"))
             .andExpect(status().isBadRequest())
             .andExpect(jsonPath("$.statusCode").value(400));
   }
 
   @Test
   public void verifyInvalidQueryStringHigh() throws Exception {
-    this.mockMvc.perform(get("/romannumeral?query=99999999"))
+    this.mockMvc.perform(get(Constants.ROMAN_NUMERNAL_CONVERSION_ENDPOINT + "?query=4000"))
             .andExpect(status().isBadRequest())
             .andExpect(jsonPath("$.statusCode").value(400));
   }
@@ -77,7 +78,7 @@ public class ConversionControllerTest {
 
   @Test
   public void verifyInvalidHttpMethod() throws Exception {
-    this.mockMvc.perform(post("/romannumeral?query=4"))
+    this.mockMvc.perform(post(Constants.ROMAN_NUMERNAL_CONVERSION_ENDPOINT + "?query=4"))
             .andExpect(status().isMethodNotAllowed());
   }
 
