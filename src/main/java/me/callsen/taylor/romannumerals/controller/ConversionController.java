@@ -22,12 +22,15 @@ import me.callsen.taylor.romannumerals.service.ConversionService;
 @RestController
 @Validated
 public class ConversionController {
-  
-  @Autowired
+    
 	private ConversionService conversionService;
+  
+  public ConversionController(@Autowired ConversionService conversionService) {
+    this.conversionService = conversionService;
+  }
 
   @GetMapping("/romannumeral")
-  public Conversion hello(@RequestParam(value = "query", required = true) @Min(1) @Max(255) int inputValue) {
+  public Conversion handleConvertRequest(@RequestParam(value = "query", required = true) @Min(1) @Max(255) int inputValue) {
     return conversionService.convertDecimalToNumeral(inputValue);
   }
 

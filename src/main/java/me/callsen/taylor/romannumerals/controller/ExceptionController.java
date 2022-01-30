@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import me.callsen.taylor.romannumerals.model.ErrorResponse;
 
 @RestController
-public class PathNotFoundController implements ErrorController {
+public class ExceptionController implements ErrorController {
   
   @GetMapping("/error")
-  public ErrorResponse handleInvalidRequestParameter() {
+  public ErrorResponse handleInvalidPath() {
     return new ErrorResponse(404, "requested path not found");
   }
   

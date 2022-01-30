@@ -13,7 +13,7 @@ public class ErrorResponse {
 		return statusCode;
 	}
 
-	public String getOutputValue() {
+	public String getMessage() {
 		return message;
 	}
 }

@@ -44,7 +44,7 @@ public class ConversionServiceImpl implements ConversionService {
         }
 
       }
-  }
+    }
 
     return new Conversion(inputValue, outputValue);
   }
