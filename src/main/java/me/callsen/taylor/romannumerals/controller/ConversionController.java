@@ -1,5 +1,6 @@
 package me.callsen.taylor.romannumerals.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -16,26 +17,30 @@ import javax.validation.constraints.Min;
 
 import me.callsen.taylor.romannumerals.model.Conversion;
 import me.callsen.taylor.romannumerals.model.ErrorResponse;
+import me.callsen.taylor.romannumerals.service.ConversionService;
 
 @RestController
 @Validated
 public class ConversionController {
   
+  @Autowired
+	private ConversionService conversionService;
+
   @GetMapping("/romannumeral")
   public Conversion hello(@RequestParam(value = "query", required = true) @Min(1) @Max(255) int inputValue) {
-    return new Conversion(inputValue, "N/A");
-  }
-
-  @ExceptionHandler({ ConstraintViolationException.class, MethodArgumentTypeMismatchException.class})
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public ErrorResponse handleInvalidRequestParameter() {
-      return new ErrorResponse(400, "query parameter 'query' must be an integer between 1 and 255");
+    return conversionService.convertDecimalToNumeral(inputValue);
   }
 
   @ExceptionHandler(MissingServletRequestParameterException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ErrorResponse handleMissingRequestParameter() {
       return new ErrorResponse(400, "query parameter 'query' is required");
+  }
+
+  @ExceptionHandler({ ConstraintViolationException.class, MethodArgumentTypeMismatchException.class})
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ErrorResponse handleInvalidRequestParameter() {
+      return new ErrorResponse(400, "query parameter 'query' must be an integer between 1 and 255");
   }
 
 }
