@@ -1,5 +1,8 @@
 package me.callsen.taylor.romannumerals.config;
 
+/**
+* Defines application constants for this API and tests.
+*/
 public class Constants {
   
   public static final String ROMAN_NUMERNAL_CONVERSION_ENDPOINT = "/romannumeral";

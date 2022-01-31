@@ -1,6 +1,6 @@
 # Roman Numerals Conversion REST API
 
-Sample Java-based REST API that performs decimal to Roman Numeral conversion. The API supports converting decimals from `1-3999` passed as a the `query` query parameter.
+Java-based REST API that converts decimal numbers to Roman Numerals. The API supports converting decimals from `1-3999` passed as a the `query` query parameter.
 
 Example request:
 
@@ -25,11 +25,11 @@ This API adheres to Roman Numerals Standard Form as [defined on Wikipedia](https
 
 ## Dependencies
 
-[Spring Initializr](https://start.spring.io/) was used to bootstrap the project, with the code structure resembling a traditional MVC approach. 
+[Spring Initializr](https://start.spring.io/) was used to bootstrap the project, with the following MVC-like code structure: 
 
 - Controllers are used to validate request parameters and tie into Services
 - A Service performs the Roman Numerals conversion
-- Models contain the data structures used to represent the JSON output for a conversion or validation error
+- Models define the data structures used to generate JSON output form a conversion or request validation error
 
 The following dependencies are required to build the project:
 
@@ -64,7 +64,7 @@ More information soon.
 
 ## Operational Monitoring and Metrics
 
-[Spring Actuator](https://github.com/spring-projects/spring-boot/tree/v2.6.3/spring-boot-project/spring-boot-actuator) has been enabled as part of this project to support monitoring, metric scraping, and access to logs. The actuator is available anytime the REST API is running.
+[Spring Actuator](https://github.com/spring-projects/spring-boot/tree/v2.6.3/spring-boot-project/spring-boot-actuator) has been enabled to support monitoring, metric scraping, and access to logs. The actuator is available anytime the REST API is running.
 
 Useful endpoints include:
 
@@ -75,13 +75,13 @@ Useful endpoints include:
 
 ### Logging
 
-Application log information is written to a file at `./logs/app.log` as well as standard out. The base log level is set to `INFO`, with Spring web information set to `DEBUG`.
+Application log information is written to a file at `./logs/app.log`, and can be accessed via the Actuator at `http://localhost:8080/actuator/logfile`. The base log level is set to `INFO`, with Spring web information set to `DEBUG`.
 
 ## Docker Container
 
 There are two different methods to run this REST API inside of a Docker container detailed below.
 
-### 1. Build Java Project with host OS
+### Option 1: Build Java Project with host OS
 
 This command will use Java and Maven dependencies on the host OS to compile and build the Maven project:
 
@@ -89,9 +89,9 @@ This command will use Java and Maven dependencies on the host OS to compile and 
 mvn spring-boot:build-image -Dspring-boot.build-image.imageName=tcallsen/romannumerals:0.0.1-SNAPSHOT
 ```
 
-### 2. Build Java Project inside Docker Containers
+### Option 2: Build Java Project inside Docker Containers
 
-This command will compile the Java Project inside a Docker container. This is useful is the host OS does not have Java and Maven installed:
+This command will compile the Java Project inside a Docker container. This is useful if the host OS does not have Java or Maven installed:
 
 ```
 docker build -t tcallsen/romannumerals:0.0.1-SNAPSHOT .
