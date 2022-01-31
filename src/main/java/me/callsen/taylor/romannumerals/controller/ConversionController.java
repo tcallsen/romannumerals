@@ -28,7 +28,7 @@ import me.callsen.taylor.romannumerals.service.ConversionService;
 @Validated
 public class ConversionController {
     
-	private ConversionService conversionService;
+  private ConversionService conversionService;
   
   /**
   * Constructs an instance of this controller, which validates requests and coordinates

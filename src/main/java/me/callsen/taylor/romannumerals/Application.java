@@ -14,8 +14,8 @@ public class Application {
   *
   * @param args passed during the execution of this application; currently not being used.
   */
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(Application.class, args);
+  }
 
 }

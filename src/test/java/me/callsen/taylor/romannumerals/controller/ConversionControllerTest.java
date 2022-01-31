@@ -22,10 +22,10 @@ import me.callsen.taylor.romannumerals.service.ConversionService;
 public class ConversionControllerTest {
 
   @Autowired
-	private MockMvc mockMvc;
+  private MockMvc mockMvc;
 
   @MockBean
-	private ConversionService conversionService;
+  private ConversionService conversionService;
 
   @BeforeEach
   public void setup() {

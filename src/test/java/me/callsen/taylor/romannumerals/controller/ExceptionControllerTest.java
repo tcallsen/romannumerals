@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 public class ExceptionControllerTest {
 
   @Autowired
-	private MockMvc mockMvc;
+  private MockMvc mockMvc;
 
   @Test
   public void verifyBasicTest() throws Exception {
