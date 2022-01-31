@@ -14,8 +14,8 @@ Example response:
 Content-Type: application/json
 
 {
-  inputValue: "255",
-  outputValue: "CCLV"
+  input: "255",
+  output: "CCLV"
 }
 ```
 

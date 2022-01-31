@@ -38,8 +38,8 @@ public class ConversionControllerTest {
   public void verifyBasicTest() throws Exception {
     this.mockMvc.perform(get(Constants.ROMAN_NUMERNAL_CONVERSION_ENDPOINT + "?query=4"))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.inputValue").value("4"))
-            .andExpect(jsonPath("$.outputValue").value("output-value"));
+            .andExpect(jsonPath("$.input").value("4"))
+            .andExpect(jsonPath("$.output").value("output-value"));
   }
 
   @Test

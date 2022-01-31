@@ -1,5 +1,7 @@
 package me.callsen.taylor.romannumerals.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
 * POJO containing input and output values used in the deciamal to Roman Numerals conversion.
 */
@@ -26,6 +28,7 @@ public class Conversion {
   *
   * @returns decimal number supplied to the conversion service, in String form.
   */
+  @JsonProperty("input")
 	public String getInputValue() {
 		return String.valueOf(inputValue);
 	}
@@ -35,6 +38,7 @@ public class Conversion {
   *
   * @returns resulting Roman Numeral returned from the conversion service.
   */
+  @JsonProperty("output")
 	public String getOutputValue() {
 		return outputValue;
 	}
