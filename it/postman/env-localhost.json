@@ -1,0 +1,10 @@
+{
+  "values": [
+    {
+      "enabled": true,
+      "key": "API_HOST",
+			"value": "http://localhost:8080",
+      "type": "text"
+    }
+  ]
+}

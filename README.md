@@ -39,6 +39,7 @@ The following dependencies are required to build the project:
 The following optional dependencies may be necessary:
 
 - Docker - only required if building/running service as a Docker container
+- Node.js, NPM, Newman - only required if executing integration tests from the command line
 
 ## Build and Run
 
@@ -60,7 +61,23 @@ mvn test
 
 ### Integration Tests
 
-More information soon.
+A Postman Collection has been created with intergration tests. The collection can be executed manually, or using the [Newman](https://github.com/postmanlabs/newman) command line tool. 
+
+#### Command Line Execution
+
+Ensure Node.js and npm are available, and then install Newman with:
+
+```
+npm install -g newman
+```
+
+The following command will execute the entire test suite:
+
+```
+newman run it/postman/integration_tests.postman_collection.json -e it/postman/env-localhost.json
+```
+
+The `API_HOST` variable in `it/postman/env-localhost.json` can be updated if the API endpoint is different than `http://localhost:8080`.
 
 ## Operational Monitoring and Metrics
 
@@ -69,13 +86,12 @@ More information soon.
 Useful endpoints include:
 
 - Health check: `http://localhost:8080/actuator/health`
-- Application log: `http://localhost:8080/actuator/logfile`
 - Metrics: `http://localhost:8080/actuator/metrics`
 - All enabled endponts: `http://localhost:8080/actuator`
 
 ### Logging
 
-Application log information is written to a file at `./logs/app.log`, and can be accessed via the Actuator at `http://localhost:8080/actuator/logfile`. The base log level is set to `INFO`, with Spring web information set to `DEBUG`.
+Application log information is written to a file at `logs/app.log`, and can be accessed via the Actuator at `http://localhost:8080/actuator/logfile`. The base log level is set to `INFO`, with Spring web information set to `DEBUG`.
 
 ## Docker Container
 
@@ -89,7 +105,7 @@ This command will use Java and Maven dependencies on the host OS to compile and 
 mvn spring-boot:build-image -Dspring-boot.build-image.imageName=tcallsen/romannumerals:0.0.1-SNAPSHOT
 ```
 
-### Option 2: Build Java Project inside Docker Containers
+### Option 2: Build Java Project inside Docker Container
 
 This command will compile the Java Project inside a Docker container. This is useful if the host OS does not have Java or Maven installed:
 
